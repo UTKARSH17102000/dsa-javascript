@@ -1,81 +1,147 @@
-# ⚡ Local JavaScript DSA Environment ⚡
+# DSA JavaScript Environment
 
-A high-fidelity, modular, and visually stunning local development and testing environment for JavaScript Data Structures and Algorithms. It gives you the power of a premium interview prep tool right in your terminal — zero bloat, zero dependencies, and instant startup.
+A local development and testing environment for JavaScript Data Structures and Algorithms.
+No browser, no account, no bloat — just your terminal, your code, and immediate feedback.
 
----
-
-## 📦 Everything You Get
-
-| Feature | Command | What It Does |
-|---|---|---|
-| **Solve & Test** | `npm run solve <name>` | Run your solution against test cases with beautiful output |
-| **New Problem** | `npm run new <name>` | Bootstrap a classified problem with topic/company stubs |
-| **Review** | `npm run review` | Spaced repetition dashboard — see what's due today |
-| **Rate a Problem** | `npm run review <name> -- --rating <easy\|medium\|hard>` | Log confidence and schedule next review |
-| **Mock Interview** | `npm run mock <name>` | Timed interview session with live countdown |
-| **JS Gotchas** | `npm run gotchas` | 10 critical JS interview traps with fixes |
-| **Custom Input** | `npm run solve <name> -- --input "[args]"` | Test with ad-hoc terminal inputs |
+Built to the standard of a **FAANG SDE-2 interview**: every problem includes complexity
+analysis, a comparison of all approaches, key interview insights, and follow-up problems.
 
 ---
 
-## 📂 Folder Structure
+## Quick Start
 
-```text
-d:\GithubRepos\DSA\
-├── problems/                  # Master solutions & test suites (source of truth)
-│   ├── two-sum.js
-│   ├── clone-graph.js
-│   └── unique-paths.js
-├── topics/                    # Categorized by DSA topic
-│   ├── graphs/
-│   │   ├── clone-graph.js         # Re-exports master (no duplication)
-│   │   └── revision/
-│   │       └── clone-graph.js     # Blank practice stub, imports master tests
-│   └── dp/
-│       ├── unique-paths.js
-│       └── revision/
-│           └── unique-paths.js
-├── companies/                 # Categorized by company
-│   ├── google/
-│   │   ├── unique-paths.js
-│   │   └── revision/
-│   │       └── unique-paths.js
-│   └── meta/
-│       ├── clone-graph.js
-│       └── revision/
-│           └── clone-graph.js
-├── reviews.json               # Auto-generated: your spaced repetition log
-├── dsa-helpers.js             # Data structures, Heaps, deep equality, formatters
-├── run.js                     # Core test runner
-├── create.js                  # Problem bootstrapper
-├── review.js                  # Spaced repetition tracker
-├── mock.js                    # Mock interview mode
-├── gotchas.js                 # JS interview traps cheat sheet
-├── AI_PROMPT_GUIDE.md         # Prompt template for AI-generated problems
-└── README.md                  # This file
+```bash
+npm run solve two-sum          # run tests
+npm run mock two-sum           # timed interview session
+npm run review                 # see what's due for review today
+npm run gotchas                # JS interview traps cheat sheet
 ```
 
 ---
 
-## 🚀 1. Solving & Testing Problems
+## Commands
 
-### Run test cases against your solution:
+| Command | What it does |
+|---|---|
+| `npm run solve <name>` | Run solution against test cases |
+| `npm run solve <name> -- --input "[args]"` | Test with custom terminal input |
+| `npm run new <name>` | Bootstrap a new problem (master + stubs + revision files) |
+| `npm run mock <name>` | Start a timed mock interview session |
+| `npm run mock <name> -- --time 45` | Mock session with custom duration (minutes) |
+| `npm run review` | Spaced repetition dashboard — see what's due today |
+| `npm run review <name> -- --rating easy\|medium\|hard` | Log confidence and schedule next review |
+| `npm run gotchas` | 10 critical JS interview traps with fixes |
+
+---
+
+## Problem File Format
+
+Every `problems/` file is structured to match what an SDE-2 candidate would communicate
+out loud in a real interview — not just the solution, but the reasoning behind it.
+
+```javascript
+/**
+ * Problem Name: Two Sum
+ *
+ * Description:
+ * Given an array of integers nums and an integer target, return indices of the two numbers
+ * that add up to target. Each input has exactly one solution; same element can't be used twice.
+ *
+ * ─── Complexity ──────────────────────────────────────────
+ * Time:  O(n)
+ * Space: O(n)
+ *
+ * ─── Approaches ──────────────────────────────────────────
+ * Brute Force:  O(n²) time, O(1) space  — nested loop checking every pair
+ * Optimal:      O(n)  time, O(n) space  — HashMap stores value→index for O(1) complement lookup
+ *
+ * ─── Key Interview Points ────────────────────────────────
+ * • Check the map for complement BEFORE inserting current element — handles [3,3] correctly
+ * • Two-pointer on sorted array is O(n)/O(1) but loses original indices (Two Sum II, not this)
+ * • Problem guarantees exactly one solution — no "not found" handling needed unless asked
+ *
+ * ─── Follow-ups ──────────────────────────────────────────
+ * • Two Sum II (LC 167) — array is sorted → two pointers, O(1) space
+ * • Three Sum (LC 15) — sort + fix one element + two-pointer inner loop, O(n²)
+ * • Four Sum (LC 18) — two nested loops + two-pointer, O(n³)
+ */
+function twoSum(nums, target) { ... }
+```
+
+---
+
+## Folder Structure
+
+```
+DSA/
+├── problems/                        # Master solutions (source of truth)
+│   ├── two-sum.js
+│   ├── clone-graph.js
+│   ├── unique-paths.js
+│   ├── graph-dfs.js
+│   ├── reverse-linked-list.js
+│   └── invert-binary-tree.js
+│
+├── topics/                          # Organized by DSA topic
+│   ├── arrays/
+│   │   ├── two-sum.js               # Re-exports master (no duplication)
+│   │   └── revision/
+│   │       └── two-sum.js           # Blank stub — practice from scratch
+│   ├── graphs/
+│   │   ├── clone-graph.js
+│   │   ├── graph-dfs.js
+│   │   └── revision/
+│   ├── dp/
+│   │   ├── unique-paths.js
+│   │   └── revision/
+│   └── ...
+│
+├── companies/                       # Organized by company
+│   ├── google/
+│   │   ├── two-sum.js
+│   │   ├── unique-paths.js
+│   │   └── revision/
+│   ├── meta/
+│   │   ├── clone-graph.js
+│   │   └── revision/
+│   ├── uber/
+│   │   ├── graph-dfs.js
+│   │   └── revision/
+│   └── ...
+│
+├── dsa-helpers.js                   # ListNode, TreeNode, GraphNode, Heap, PriorityQueue
+├── run.js                           # Test runner
+├── create.js                        # Problem bootstrapper
+├── mock.js                          # Mock interview mode
+├── review.js                        # Spaced repetition tracker
+├── gotchas.js                       # JS interview traps
+├── reviews.json                     # Auto-generated: your review log
+├── CLAUDE.md                        # AI generation standards (SDE-2 level)
+└── AI_PROMPT_GUIDE.md               # Prompt template for non-Claude AI tools
+```
+
+---
+
+## Solving & Testing
+
 ```bash
 npm run solve two-sum
 npm run solve clone-graph
 npm run solve unique-paths
 ```
 
-The runner uses **smart fuzzy matching** — you can search by partial name or path:
+The runner uses smart fuzzy matching — partial names and paths both work:
+
 ```bash
-npm run solve two      # Finds two-sum.js automatically
-npm run solve revision/clone-graph   # Runs your practice revision stub
-npm run solve graphs/rev/clone       # Also works!
+npm run solve two           # finds two-sum.js
+npm run solve graphs/rev/clone    # finds topics/graphs/revision/clone-graph.js
+npm run solve revision/two-sum    # runs your practice stub
 ```
 
-If a name matches multiple files (master + stubs + revisions), a **prioritized selection menu** is shown and the master runs by default.
+When multiple files match, the master in `problems/` runs by default. A ranked list is shown.
 
-### Run with custom terminal input:
+### Custom input
+
 ```bash
 npm run solve two-sum -- --input "[[3, 2, 4], 6]"
 npm run solve unique-paths -- --input "[3, 5]"
@@ -83,211 +149,172 @@ npm run solve unique-paths -- --input "[3, 5]"
 
 ---
 
-## 🗂️ 2. Creating & Classifying Problems
+## Practice & Revision
 
-### Bootstrap a new problem:
-```bash
-npm run new <problem-name>
-npm run new <problem-name> -- --topic <topic> --company <company>
+Every problem has a blank revision stub that imports the test cases from the master:
+
+```
+topics/graphs/revision/clone-graph.js   ← write your solution here
+companies/meta/revision/clone-graph.js  ← same, filed under company
 ```
 
-**Examples:**
-```bash
-npm run new two-sum                              # Master file only
-npm run new clone-graph -- -t graphs -c meta    # Full classification
-npm run new unique-paths -- -t dp -c google
-```
-
-This generates **all files automatically**:
-- `problems/clone-graph.js` — Master solution (write code here)
-- `topics/graphs/clone-graph.js` — Linking stub (1 line, re-exports master)
-- `topics/graphs/revision/clone-graph.js` — **Blank practice file** with master tests imported
-- `companies/meta/clone-graph.js` — Company linking stub
-- `companies/meta/revision/clone-graph.js` — Company revision stub
-
-### How the revision system works:
-The **Revision** file contains a blank function stub but **imports the test cases from the master** — so you can practice coding a solution from scratch and verify it instantly, with no setup:
-```bash
-# Practice the clone-graph problem from scratch:
-# 1. Open: topics/graphs/revision/clone-graph.js
-# 2. Write your solution in the blank function
-# 3. Run:
-npm run solve graphs/revision/clone-graph
-```
+To practice a problem from scratch:
+1. Open the revision stub
+2. Write your solution in the blank function
+3. Run `npm run solve graphs/revision/clone-graph` to verify
 
 ---
 
-## 🧠 3. Spaced Repetition Review Tracker
+## Mock Interview Mode
 
-After solving a problem, log your confidence to schedule the next review:
+Simulates a timed coding interview in your terminal:
 
-### Rate a problem:
 ```bash
-npm run review two-sum -- --rating easy    # Schedules next review in 7 days
+npm run mock two-sum              # 30-minute session (default)
+npm run mock clone-graph -- --time 45
+```
+
+What happens:
+1. A blank mock file is created with the function stub and test cases imported
+2. A live countdown timer starts — turns yellow at 10 min, red at 5 min
+3. Edit the mock file in your editor and run `npm run solve mock-two-sum` at any point
+4. On submit (Ctrl+C or timer expiry) all tests run automatically and results are logged
+5. Rate your performance after: `npm run review two-sum -- --rating medium`
+
+---
+
+## Spaced Repetition Review
+
+```bash
+npm run review                               # today's dashboard
+npm run review two-sum -- --rating easy      # schedule next review in 7 days
 npm run review clone-graph -- --rating medium  # 3 days
-npm run review unique-paths -- --rating hard   # 1 day (try again tomorrow)
+npm run review unique-paths -- --rating hard   # 1 day (retry tomorrow)
+npm run review two-sum -- --info             # full history for one problem
 ```
 
-### View today's dashboard:
-```bash
-npm run review
-```
-
-Output:
+Dashboard output:
 ```
 ╔═════════════════════════════════════════════════════════╗
 ║          ⚡ DSA Spaced Repetition Dashboard              ║
 ╚═════════════════════════════════════════════════════════╝
-  Today: 2026-05-31
+  Today: 2026-06-01
 
-  📊 Stats:  3 problems tracked  │  3 total sessions  │  0 mastered (≥14d interval)
+  📊 Stats:  6 problems tracked  │  8 total sessions  │  1 mastered (≥14d interval)
 
   🔥 Due for Review Today (1)
   ──────────────────────────────────────────────────────────
-  ➤ clone-graph                    (due today)  Last: 🔴 hard  Sessions: 1
+  ➤ clone-graph                    (due today)  Last: 🔴 hard  Sessions: 2
 
-  📅 Up Next (2 problems scheduled)
+  📅 Up Next
   ──────────────────────────────────────────────────────────
-    unique-paths                   in 2d (2026-06-02)
-    two-sum                        in 3d (2026-06-03)
+    two-sum                        in 3d (2026-06-04)
+    unique-paths                   in 6d (2026-06-07)
 ```
 
-### View a specific problem's history:
-```bash
-npm run review two-sum -- --info
-```
-
-### How the interval algorithm works:
+Interval algorithm:
 | Rating | Next Review |
 |---|---|
-| `hard` | Always resets to **1 day** |
-| `medium` | **1.5×** the previous interval |
-| `easy` | **2.5×** the previous interval |
-
-A problem is considered **mastered** once its interval reaches 14+ days.
-
----
-
-## ⏱️ 4. Mock Interview Mode
-
-Simulate a real timed coding interview session directly in your terminal:
-
-```bash
-npm run mock two-sum              # 30-minute session (default)
-npm run mock clone-graph -- --time 45  # 45-minute session
-```
-
-**What happens:**
-1. A blank practice file `problems/mock-two-sum.js` is created with the function stub and master tests already imported.
-2. A **live countdown timer** starts in your terminal, updating every second with a progress bar that turns yellow at 10 minutes and red at 5 minutes.
-3. Open the mock file in your editor and write your solution.
-4. You can test at any time during the session: `npm run solve mock-two-sum`
-5. Press **Ctrl+C** to submit early (or wait for the timer to expire).
-6. The runner **automatically runs all test cases** on submission, prints results, and saves your attempt with a timestamp.
-7. The session is logged in your review tracker.
-
-After your session, rate your performance:
-```bash
-npm run review two-sum -- --rating medium
-```
+| `hard` | Resets to **1 day** |
+| `medium` | **1.5×** previous interval |
+| `easy` | **2.5×** previous interval |
+| ≥14 days | Considered **mastered** |
 
 ---
 
-## ⚠️ 5. JavaScript Interview Gotchas
+## Data Structures & Helpers
 
-Quick-access reference for the most critical JS traps that trip up candidates:
+All helpers are imported via `require("../dsa-helpers")`.
 
-```bash
-npm run gotchas                    # Show all 10 gotchas
-npm run gotchas -- --topic sort    # Filter by keyword
-npm run gotchas -- --topic shift   # Show array complexity traps
-npm run gotchas -- --topic closure # Show closure/var traps
+### ListNode
+
+```javascript
+const { ListNode } = require("../dsa-helpers");
+const head = ListNode.arrayToList([1, 2, 3, 4, 5]);
+// ListNode { 1 ➔ 2 ➔ 3 ➔ 4 ➔ 5 ➔ null }
 ```
 
-**Topics covered:**
-| # | Gotcha | Risk |
-|---|---|---|
-| 1 | `.sort()` uses string order by default | 🔴 HIGH |
-| 2 | Integer division returns floats | 🔴 HIGH |
-| 3 | Number overflow & safe integer limits | 🟡 MEDIUM |
-| 4 | `.shift()` / `.unshift()` are O(N) not O(1) | 🔴 HIGH |
-| 5 | Object/array equality is by reference | 🔴 HIGH |
-| 6 | `.splice()` mutates, `.slice()` does not | 🟡 MEDIUM |
-| 7 | `NaN`, falsy values, and `null` comparison traps | 🟡 MEDIUM |
-| 8 | `var` in loops creates shared closure | 🟡 MEDIUM |
-| 9 | String concatenation in loops is O(N²) | 🔴 HIGH |
-| 10 | `%` returns negative for negative numbers | 🟡 MEDIUM |
+### TreeNode
 
----
+```javascript
+const { TreeNode } = require("../dsa-helpers");
+// LeetCode-style level-order BFS array with null for missing nodes
+const root = TreeNode.arrayToTree([4, 2, 7, 1, 3, null, 9]);
+```
 
-## 📦 6. Data Structures & Helpers
+### GraphNode
 
-All helpers are available via `require("../dsa-helpers")`:
+```javascript
+const { GraphNode } = require("../dsa-helpers");
+// 1-indexed adjacency list
+const node = GraphNode.adjListToGraph([[2, 4], [1, 3], [2, 4], [1, 3]]);
+// Node 1 ➔ [ 2, 4 ], Node 2 ➔ [ 1, 3 ], ...
+```
 
 ### MinHeap / MaxHeap / PriorityQueue
-JavaScript has no built-in heap. Use these for problems like *Top K Elements*, *Merge K Sorted Lists*, *Dijkstra's Algorithm*:
+
 ```javascript
 const { MinHeap, MaxHeap, PriorityQueue } = require("../dsa-helpers");
 
-// Min-Heap (smallest value dequeues first):
 const minH = new MinHeap();
 minH.enqueue(10); minH.enqueue(3); minH.enqueue(7);
 minH.dequeue();  // → 3
 
-// Max-Heap (largest value dequeues first):
-const maxH = new MaxHeap();
-maxH.enqueue(10); maxH.enqueue(3); maxH.enqueue(7);
-maxH.dequeue();  // → 10
-
-// Custom PriorityQueue (Dijkstra-style with {node, dist} objects):
+// Dijkstra-style custom comparator
 const pq = new PriorityQueue((a, b) => a.dist - b.dist);
 pq.enqueue({ node: "A", dist: 10 });
 pq.enqueue({ node: "B", dist: 2 });
 pq.dequeue();  // → { node: "B", dist: 2 }
 ```
 
-### ListNode (Linked List)
-```javascript
-const { ListNode } = require("../dsa-helpers");
-const head = ListNode.arrayToList([1, 2, 3, 4, 5]);
-// Prints: ListNode { 1 ➔ 2 ➔ 3 ➔ 4 ➔ 5 ➔ null }
-```
+### 2D Matrix (DP / Grid problems)
 
-### TreeNode (Binary Tree)
-```javascript
-const { TreeNode } = require("../dsa-helpers");
-// LeetCode-style BFS level-order input with null placeholders:
-const root = TreeNode.arrayToTree([4, 2, 7, 1, 3, null, 9]);
-```
+Return a 2D array from your solution and the runner renders it as a table automatically:
 
-### GraphNode (Undirected Graph)
-```javascript
-const { GraphNode } = require("../dsa-helpers");
-// LeetCode 1-indexed adjacency list:
-const node = GraphNode.adjListToGraph([[2, 4], [1, 3], [2, 4], [1, 3]]);
-// Prints: Node 1 ➔ [ 2, 4 ] ...
 ```
-
-### 2D Matrix (DP / Grid Problems)
-Return a 2D array from your solution and it auto-renders as a pretty grid:
-```javascript
-// Output of uniquePaths(3, 7):
-// Matrix Grid [3x7]:
-// ┌───┬───┬───┬────┬────┬────┬────┐
-// │ 1 │ 1 │ 1 │ 1  │ 1  │ 1  │ 1  │
-// ├───┼───┼───┼────┼────┼────┼────┤
-// │ 1 │ 2 │ 3 │ 4  │ 5  │ 6  │ 7  │
-// ├───┼───┼───┼────┼────┼────┼────┤
-// │ 1 │ 3 │ 6 │ 10 │ 15 │ 21 │ 28 │
-// └───┴───┴───┴────┴────┴────┴────┘
+Matrix Grid [3x7]:
+┌───┬───┬───┬────┬────┬────┬────┐
+│ 1 │ 1 │ 1 │ 1  │ 1  │ 1  │ 1  │
+├───┼───┼───┼────┼────┼────┼────┤
+│ 1 │ 2 │ 3 │ 4  │ 5  │ 6  │ 7  │
+├───┼───┼───┼────┼────┼────┼────┤
+│ 1 │ 3 │ 6 │ 10 │ 15 │ 21 │ 28 │
+└───┴───┴───┴────┴────┴────┴────┘
 ```
 
 ---
 
-## 🤖 7. AI-Powered Custom Problem Generation
+## JavaScript Interview Gotchas
 
-To add any LeetCode problem instantly, use the prompt template in [AI_PROMPT_GUIDE.md](file:///d:/GithubRepos/DSA/AI_PROMPT_GUIDE.md):
+```bash
+npm run gotchas                        # all 10 gotchas
+npm run gotchas -- --topic sort        # filter by keyword
+```
 
-1. Open `AI_PROMPT_GUIDE.md` and copy the prompt template.
-2. Paste it into your AI assistant along with the problem description/link.
-3. The AI will generate the master solution, test cases, classification stubs, and revision files automatically — all perfectly wired into this folder structure.
+| # | Trap | Risk |
+|---|---|---|
+| 1 | `.sort()` uses string order by default — always pass `(a,b) => a-b` | HIGH |
+| 2 | Integer division returns floats — use `Math.floor` or `>> 1` | HIGH |
+| 3 | Number overflow — check `Number.MAX_SAFE_INTEGER` for large inputs | MEDIUM |
+| 4 | `.shift()` / `.unshift()` are O(n) — use a proper queue or pointer | HIGH |
+| 5 | Object/array equality is by reference — `[] === []` is false | HIGH |
+| 6 | `.splice()` mutates the original array — `.slice()` does not | MEDIUM |
+| 7 | `NaN`, falsy traps, and `null == undefined` quirks | MEDIUM |
+| 8 | `var` in loops creates a shared closure — always use `let` | MEDIUM |
+| 9 | String concatenation in loops is O(n²) — use an array and `.join("")` | HIGH |
+| 10 | `%` returns negative for negative numbers — use `((n%m)+m)%m` | MEDIUM |
+
+---
+
+## AI-Assisted Problem Generation
+
+This repo is configured for Claude Code. The `CLAUDE.md` file at the project root
+instructs Claude to generate solutions at SDE-2 FAANG standard — including all four
+docblock sections (Complexity, Approaches, Key Interview Points, Follow-ups).
+
+To add a problem with Claude Code:
+```
+/dsa-problem two-sum --topic arrays --company google
+```
+
+For other AI tools (ChatGPT, Gemini, etc.), use the template in `AI_PROMPT_GUIDE.md`.
