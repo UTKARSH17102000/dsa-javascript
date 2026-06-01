@@ -1,0 +1,25 @@
+{
+  "name": "dsa-javascript-env",
+  "version": "1.1.0",
+  "description": "A high-fidelity local developer environment for writing, running, and testing JavaScript DSA snippets with LeetCode-style test cases, custom visual output, spaced repetition reviews, mock interview simulations, and JS gotchas.",
+  "main": "run.js",
+  "scripts": {
+    "solve": "node run.js",
+    "new": "node create.js",
+    "review": "node review.js",
+    "mock": "node mock.js",
+    "gotchas": "node gotchas.js"
+  },
+  "keywords": [
+    "dsa",
+    "leetcode",
+    "javascript",
+    "runner",
+    "terminal",
+    "spaced-repetition",
+    "interview-prep",
+    "mock-interview"
+  ],
+  "author": "Antigravity",
+  "license": "ISC"
+}

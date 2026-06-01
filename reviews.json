@@ -1,0 +1,44 @@
+{
+  "two-sum": {
+    "problem": "two-sum",
+    "created": "2026-05-31",
+    "sessions": [
+      {
+        "date": "2026-05-31",
+        "rating": "easy",
+        "interval": 3
+      }
+    ],
+    "interval": 3,
+    "nextReview": "2026-06-03",
+    "lastReview": "2026-05-31"
+  },
+  "clone-graph": {
+    "problem": "clone-graph",
+    "created": "2026-05-31",
+    "sessions": [
+      {
+        "date": "2026-05-31",
+        "rating": "hard",
+        "interval": 1
+      }
+    ],
+    "interval": 1,
+    "nextReview": "2026-06-01",
+    "lastReview": "2026-05-31"
+  },
+  "unique-paths": {
+    "problem": "unique-paths",
+    "created": "2026-05-31",
+    "sessions": [
+      {
+        "date": "2026-05-31",
+        "rating": "medium",
+        "interval": 2
+      }
+    ],
+    "interval": 2,
+    "nextReview": "2026-06-02",
+    "lastReview": "2026-05-31"
+  }
+}
