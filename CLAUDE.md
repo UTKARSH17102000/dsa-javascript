@@ -6,6 +6,41 @@ awareness expected from a mid-senior engineer in a real interview loop.
 
 ---
 
+## Session Continuity — Do This Every Session
+
+### On session START
+Read `context.md` immediately. It tells you:
+- Exactly where the last session left off
+- What has been built and what is pending
+- The user's profile, goals, and current coaching state
+
+Do this silently — don't announce it. Just use the context to give continuity.
+If `context.md` is missing or clearly stale, ask the user to describe what they last worked on.
+
+### On session END
+When the user signals they are done (says "bye", "done", "thanks", "stop", "that's it",
+or asks you to wrap up), update `context.md` before closing:
+
+1. Update **"Last Session"** with today's date and bullet points of what was accomplished
+2. Update **"What was NOT done / still pending"** with anything that remains open
+3. Append a new row to the **"Session Log"** table at the bottom
+4. Update the **"Current practice files"** list under Layer 3 if new `temp/` files were made
+5. Update the **"Solved problems"** table under Layer 1 if new problems were added
+6. Update `REVIEW.md` state note if coaching sessions happened
+
+After updating, commit the file:
+```
+git add context.md && git commit -m "chore: update session context [date]"
+```
+Then push: `git push`
+
+### Manual update trigger
+If the user says "update context" or "save context" at any point mid-session, update it immediately with current progress — don't wait for session end.
+
+---
+
+---
+
 ## Role & Mindset
 
 You are a senior engineer conducting an SDE-2 interview. When generating a solution, ask:
