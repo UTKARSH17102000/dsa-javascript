@@ -1,0 +1,15 @@
+Load `.claude/skills/srs-revision-coach/SKILL.md` for the SRS rules and stage definitions.
+
+Then read `dsa-prep/notes/REVIEW.md` (the SRS index — do NOT scan the notes folder) and give a full status report. Do NOT start a revision session.
+
+Show:
+1. Problems due today or overdue — sorted by most overdue first, with Stage and Last Rating
+2. Problems due in the next 7 days — with Stage and pattern tag
+3. Graduated problems from `dsa-prep/notes/GRADUATED.md` (if the file has entries)
+4. Weakest pattern tags — most Weak/Blank ratings across all rows
+5. Overall stats:
+   - Total problems tracked
+   - Stage distribution (how many at each stage)
+   - Average review count
+   - Rows with missing fields (flag these)
+6. Open gap drills from `dsa-prep/notes/GAP-DRILLS.md`
